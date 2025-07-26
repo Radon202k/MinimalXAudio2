@@ -138,6 +138,14 @@ typedef struct
     
 } LoadedWav;
 
+void
+wav_free(LoadedWav *wav)
+{
+    free(wav->data);
+    wav->data = 0;
+    wav->dataSize = 0;
+}
+
 bool
 wav_load(char *filename, LoadedWav *out)
 {
@@ -225,6 +233,7 @@ int main()
                 printf("Playing sfx for 7 seconds...\n");
                 Sleep(7000);
                 
+                wav_free(&test);
             }
         }
         
